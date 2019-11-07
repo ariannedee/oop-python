@@ -23,22 +23,28 @@ class Bike(object):
         self.sold = False
 
     def update_sale_price(self):
+        """
+        Set the current sale price based on the make, model, age, and condition
+        """
         original_value = lookup_value(self.make, self.model)
         current_year = datetime.now().year
-        current_value = original_value * (1 - (current_year - self.year) * 0.0)
+        current_value = original_value * (1 - (current_year - self.year) * 0.015)
         current_value = current_value * self.condition.value
         self.sale_price = current_value
         return self.sale_price
 
     def sell(self):
+        """
+        Mark as sold and determine the profit received from selling the bike
+        """
         self.sold = True
         profit = self.sale_price - self.cost
-        print(f'Sale price: {self.sale_price}')
-        print(f'Cost: {self.cost}')
-        print(f'Profit: {profit}')
         return profit
 
     def service(self, cost, new_condition):
+        """
+        Service the bike and update sale price
+        """
         self.cost += cost
         self.condition = new_condition
         self.update_sale_price()
