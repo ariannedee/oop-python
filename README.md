@@ -28,24 +28,7 @@ Follow the instructions here: [Windows Python installer instructions](docs/WININ
 ##### If you've already installed Python with the default settings
 Follow the instructions here: [Add Python to PATH variable in Windows](docs/WINSETPATH.md)
 
-### 2. Download PyCharm (Community Edition)
-Download here: https://www.jetbrains.com/pycharm/download/
-
-Install, open, and use the default settings.
-
-### 3. Download the course files
-If you're viewing this on GitHub already, stay on this page.
-Otherwise, go to the GitHub repository: https://github.com/ariannedee/intro-to-python
-
-#### If you know git:
-Clone the repository.
-
-#### If you don't know git:
-1. Click the "Clone or download" (green) button at the top-right of the page
-2. Click "Download ZIP"
-3. Unzip it and move the **python-level-2-master** folder to a convenient location
-
-### 4. Make sure that Python is properly installed
+### 2. Make sure that Python is properly installed
 1. Open the *Command Prompt* application in Windows
 or *Terminal* on Mac or Linux
 
@@ -55,7 +38,9 @@ or *Terminal* on Mac or Linux
 
 1. One or both of those commands should print 
 a Python version of 3.6 or higher 
-(whichever version you just downloaded)
+(whichever version you just downloaded).
+ If it doesn't, you have to follow instructions to
+ [add Python to your PATH variable](docs/WINSETPATH.md).
 
 **Note:** 
 You can now type just the `python` or `python3` command
@@ -64,14 +49,36 @@ to run the Python interpreter.
 You can also run a *.py* file by running 
 `python filename.py`
 
+### 3. Download PyCharm (Community Edition)
+Download here: https://www.jetbrains.com/pycharm/download/
+
+Install, open, and use the default settings.
+
+### 4. Download the course files
+If you're viewing this on GitHub already, stay on this page.
+Otherwise, go to the GitHub repository: https://github.com/ariannedee/oop-python
+
+#### If you know git:
+Clone the repository.
+
+#### If you don't know git:
+1. Click the "Clone or download" (green) button at the top-right of the page
+2. Click "Download ZIP"
+3. Unzip it and move the **oop-python-master** folder to a convenient location
+
+### 5. At the beginning of class, download the PDF of the slides
+It should be in the **Resources** widget
+
 ## FAQs
 ### Can I use Python 2?
 
-Yes, but I highly recommend using Python 3. If you are using Python 2, a few commands will be different and you can't use [f-strings](https://realpython.com/python-f-strings/) to format strings.
+Yes. There are not many differences for this class.
 
 ### Can I use a different code editor besides PyCharm?
 
-Yes, but it is only recommended if you are already know it and are comfortable navigating to different files and running commands in the command line. If it has syntax highlighting for Python, that is ideal.
+Yes, but it is only recommended if you are already know it 
+and are comfortable navigating to different files and running commands in the command line. 
+If it has syntax highlighting for Python, that is ideal.
 
 ### PyCharm can't find Python 3
 
@@ -82,9 +89,14 @@ On a PC:
 - Go to **File** > **Settings**
 
 Once in Settings:
-- Go to **Project: oop-python** > **Project Interpreter**
-- Look for your Python version in the Project Interpreter dropdown
-- If it's not there, click **gear icon** > **Add...**
-- In the new window, select **System Interpreter** on the left, and then look for the Python version in the dropdown
-- If it's not there, click the **...** button and navigate to your Python location
-- You may have to search the internet for where Python gets installed by default on your operating system
+1. Go to **Project: oop-python** > **Project Interpreter**
+1. Look for your Python version in the Project Interpreter dropdown
+1. If it's not there, click **gear icon** > **Add...**
+1. In the new window, select **System Interpreter** on the left, and then look for the Python version in the dropdown
+1. If it's not there, click the **...** button and navigate to your Python location
+   - To find where Python is located, [look in these directories](docs/PATH_LOCATIONS.md)
+   - You may have to search the internet for where Python gets installed by default on your operating system
+
+### Do you offer private Python help?
+I can! Email **arianne.dee.studios at gmail.com** if you have any questions
+or would like to set up some remote training.

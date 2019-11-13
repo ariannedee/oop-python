@@ -41,4 +41,18 @@ def square(num):
 # Assertions
 assert square(10) == 100
 
+# Dictionaries
+fruit = {'a': 'apple', 'b': 'banana', 'c': 'coconut'}
+
+print(fruit['a'])  # Retrieve an value
+fruit['c'] = 'cherry'  # Modify a value
+fruit['d'] = 'dragon fruit'  # Add a new key/value
+
+# Exceptions
+user_input = input('Give me a number')
+
+try:
+    number = float(user_input)
+except ValueError:
+    print(f'{user_input} is not a valid number')
 

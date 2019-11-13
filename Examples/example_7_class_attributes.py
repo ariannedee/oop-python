@@ -10,23 +10,29 @@ class Condition(Enum):
 
 
 class Bike(object):
+    count = 0
+    num_wheels = 2
+
     def __init__(self, cost, make, model, year, condition):
-        # Different for every new instance
         self.cost = cost
         self.make = make
         self.model = model
         self.year = year
         self.condition = condition
 
-        # Same for every new instance
-        self.sale_price = None
+        self.sale_price = self.update_sale_price()
         self.sold = False
+
+        type(self).count += 1
+
+    def __del__(self):
+        type(self).count -= 1
 
     def update_sale_price(self):
         """
         Set the current sale price based on the make, model, age, and condition
         """
-        original_value = lookup_value(self.make, self.model)
+        original_value = lookup_msrp_value(self.make, self.model)
         current_year = datetime.now().year
         current_value = original_value * (1 - (current_year - self.year) * 0.015)
         current_value = current_value * self.condition.value
@@ -51,5 +57,23 @@ class Bike(object):
         return self.sale_price
 
 
-def lookup_value(make, model):
+def lookup_msrp_value(make, model):
+    """
+    Determine original sale price of a bike when new
+    """
     return 1000
+
+
+if __name__ == '__main__':
+    bike1 = Bike(0, 'Raleigh', 'Talus 2', 2013, Condition.BAD)
+    bike2 = Bike(100, 'Univega', 'Alpina', 1999, Condition.OKAY)
+
+    # All print 2
+    print(bike2.num_wheels)
+    print(bike1.num_wheels)
+    print(Bike.num_wheels)
+
+    print(Bike.count)  # 2
+
+    del bike1
+    print(Bike.count)  # 1
