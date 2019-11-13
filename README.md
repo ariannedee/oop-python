@@ -98,5 +98,5 @@ Once in Settings:
    - You may have to search the internet for where Python gets installed by default on your operating system
 
 ### Do you offer private Python help?
-I can! Email **arianne.dee.studios at gmail.com** if you have any questions
+Yes, email **arianne.dee.studios at gmail.com** if you have any questions
 or would like to set up some remote training.
