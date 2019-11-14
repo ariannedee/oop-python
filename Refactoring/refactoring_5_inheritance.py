@@ -4,7 +4,7 @@ There are 2 players.
 Each player takes turn rolling a die and moving that number of spaces.
 The first person to space 100 wins.
 
-Object-oriented with a Player and Game objects
+Object-oriented with a LuckyPlayer and Game objects
 """
 import random
 
