@@ -15,14 +15,12 @@ class Player(object):
         self.player_num = player_num
 
     def roll_dice(self):
-        number = random.randint(1, 6)
-        print(f'{self} roll a {number}')
-        return number
+        return random.randint(1, 6)
 
     def make_move(self):
         roll = self.roll_dice()
         self.score += roll
-        print(f'{self} score: {self.score}')
+        print(f'{self} roll a {roll} (score: {self.score})')
 
     def met_goal(self):
         return self.score >= 100

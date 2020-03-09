@@ -1,50 +1,38 @@
-from datetime import datetime
+def update_sale_price(bike, sale_price):
+    if bike['sold'] is True:
+        raise Exception("Action not allowed. Bike has already been sold")
+    bike['sale_price'] = sale_price
 
 
-def lookup_msrp_value(make, model):
-    """
-    Determine original sale price of a bike when new
-    """
-    return 1000
-
-
-def set_sale_price(bike):
-    original_value = lookup_msrp_value(bike['make'], bike['model'])
-    current_year = datetime.now().year
-    current_value = original_value * (1 - (current_year - bike['year']) * 0.015)
-    current_value = current_value * bike['condition']
-    bike['sale_price'] = current_value
-
-
-def create_bike(cost, make, model, year, condition):
+def create_bike(description, cost, sale_price, condition):
     return {
+        'description': description,
         'cost': cost,
-        'make': make,
-        'model': model,
-        'year': year,
+        'sale_price': sale_price,
         'condition': condition,
         'sold': False,
     }
 
 
-def sell(bike):
+def sell(bike, sold_for=None):
+    if sold_for:
+        update_sale_price(bike, sold_for)
     bike['sold'] = True
     profit = bike['sale_price'] - bike['cost']
     return profit
 
 
-bike1 = create_bike(100, 'Univega', 'Alpina', 1999, 0.5)
+bike1 = create_bike('Univega Alpina, orange', cost=100, sale_price=500, condition=0.5)
 # bike1 = {
 #         'cost': 100,
-#         'make': 'Univega',
-#         'model': 'Alpina',
-#         'year': 1999,
 #         'condition': 0.5,
+#         'description': 'Univega Alpina, orange',
+#         'sale_price': 500,
 #         'sold': False,
 #     }
 
-set_sale_price(bike1)
+update_sale_price(bike1, 350)
 # bike1['sale_price'] = 350.00
 
-sell(bike1)
+print(sell(bike1))
 # bike1['sold'] = True

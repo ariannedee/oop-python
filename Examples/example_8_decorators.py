@@ -9,65 +9,67 @@ class Condition(Enum):
     BAD = 0.2
 
 
-class Bike(object):
-    def __init__(self, cost, make, model, year, condition):
-        self.cost = cost
-        self.make = make
-        self.model = model
-        self.year = year
-        self.condition = condition
+class MethodNotAllowed(Exception):
+    pass
 
-        self.sale_price = self.update_sale_price()
+
+class Bike(object):
+    def __init__(self, description, condition, sale_price, cost=0):
+        self.description = description
+        self.condition = condition
+        self.sale_price = sale_price
+        self.cost = cost
+
         self.sold = False
 
-    def update_sale_price(self):
-        """
-        Set the current sale price based on the make, model, age, and condition
-        """
-        original_value = self.lookup_msrp_value(self.make, self.model)
-        current_year = datetime.now().year
-        current_value = original_value * (1 - (current_year - self.year) * 0.015)
-        current_value = current_value * self.condition.value
-        self.sale_price = current_value
-        return self.sale_price
+    def update_sale_price(self, sale_price):
+        if self.sold:
+            raise MethodNotAllowed('Bike has already been sold')
+        self.sale_price = sale_price
 
     def sell(self):
         """
         Mark as sold and determine the profit received from selling the bike
         """
         self.sold = True
-        return self.profit
+        profit = self.sale_price - self.cost
+        return profit
 
-    def service(self, cost, new_condition):
+    def service(self, spent, sale_price=None, condition=None):
         """
-        Service the bike and update sale price
+        Service the bike and update attributes
         """
-        self.cost += cost
-        self.condition = new_condition
-        self.update_sale_price()
-        return self.sale_price
+        self.cost += spent
+        if sale_price:
+            self.update_sale_price(sale_price)
+        if self.condition:
+            self.condition = condition
 
     @property
     def profit(self):
-        if not self.sold:
+        if self.sold is False:
             return None
         return self.sale_price - self.cost
 
     @staticmethod
-    def lookup_msrp_value(make, model):
-        """
-        Determine original sale price of a bike when new
-        """
-        return 1000
+    def age(year):
+        current_year = datetime.now().year
+        age = current_year - year
+        if age < 1:
+            return "New"
+        elif age < 5:
+            return "Recent"
+        elif age < 40:
+            return "Old"
+        else:
+            return "Vintage"
 
     @classmethod
     def get_default_bike(cls):
         return cls(
-            cost=0,
-            make='A make',
-            model='A model',
-            year=2010,
-            condition=Condition.GOOD
+            description="A default bike",
+            condition=Condition.GOOD,
+            sale_price=100
         )
 
 
@@ -79,6 +81,6 @@ if __name__ == '__main__':
     print(bike.profit)    # Call property
 
     # Call static methods
-    bike.lookup_msrp_value('Raleigh', 'Talus 2')
-    Bike.lookup_msrp_value('Brodie', 'Energy')
+    print(bike.age(1975))  # Vintage
+    print(Bike.age(2019))  # Recent
 

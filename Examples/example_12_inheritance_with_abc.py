@@ -1,12 +1,15 @@
+import abc  # Abstract Base Class
 from math import pi
 
 
-class Shape(object):
+class Shape(abc.ABC):
+    @abc.abstractmethod
     def area(self):
-        raise NotImplemented
+        pass
 
+    @abc.abstractmethod
     def circumference(self):
-        raise NotImplemented
+        pass
 
     def __str__(self):
         return type(self).__name__

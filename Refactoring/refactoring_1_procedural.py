@@ -16,21 +16,19 @@ print('Start game!')
 while True:
     dice = random.randint(1, 6)
     player_1_score += dice
-    print(f'Player 1 rolls a {dice}')
+    print(f'Player 1 rolls a {dice} (score: {player_1_score})')
     
     if player_1_score >= 100:
         print('Player 1 wins!')
         break
-    print(f'Player 1 score: {player_1_score}')
 
     dice = random.randint(1, 6)
     player_2_score += dice
-    print(f'Player 2 rolls a {dice}')
+    print(f'Player 2 rolls a {dice} (score: {player_2_score})')
 
     if player_2_score >= 100:
         print('Player 2 wins!')
         break
-    print(f'Player 2 score: {player_2_score}')
 
 print()
 print('Final score:')

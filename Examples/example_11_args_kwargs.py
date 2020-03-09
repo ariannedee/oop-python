@@ -46,7 +46,8 @@ class Square(Rectangle):
         super().__init__(length, length, *args, **kwargs)
 
 
-shapes = [Square(10, x=0, y=0), Circle(20, -1, 1), Rectangle(3.4, 1.5, 20, y=5)]
+if __name__ == '__main__':
+    shapes = [Square(10, x=0, y=0), Circle(20, -1, 1), Rectangle(3.4, 1.5, 20, y=5)]
 
-for shape in shapes:
-    print(f'{shape} area is {shape.area()}')
+    for shape in shapes:
+        print(f'{shape} area is {shape.area()}')

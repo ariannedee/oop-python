@@ -16,10 +16,8 @@ while True:
     for player_num in range(1, 3):
         dice = random.randint(1, 6)
         scores[player_num-1] += dice
-        print(f'Player {player_num} rolls a {dice}')
-
         new_score = scores[player_num - 1]
-        print(f'Player {player_num} score: {new_score}')
+        print(f'Player {player_num} rolls a {dice} (score: {new_score})')
         if new_score >= 100:
             print(f'Player {player_num} wins!')
             break

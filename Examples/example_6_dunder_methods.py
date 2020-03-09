@@ -1,4 +1,3 @@
-from datetime import datetime
 from enum import Enum
 
 
@@ -10,32 +9,22 @@ class Condition(Enum):
 
 
 class Bike(object):
-
-    def __init__(self, cost, make, model, year, condition):
-        self.cost = cost
-        self.make = make
-        self.model = model
-        self.year = year
+    def __init__(self, description, condition, sale_price, cost=0):
+        self.description = description
         self.condition = condition
+        self.sale_price = sale_price
+        self.cost = cost
 
-        self.sale_price = self.update_sale_price()
         self.sold = False
-
         print(f'New bike: {self}')
 
     def __del__(self):
         print(f'Deleting bike: {self}')
 
-    def update_sale_price(self):
-        """
-        Set the current sale price based on the make, model, age, and condition
-        """
-        original_value = lookup_msrp_value(self.make, self.model)
-        current_year = datetime.now().year
-        current_value = original_value * (1 - (current_year - self.year) * 0.015)
-        current_value = current_value * self.condition.value
-        self.sale_price = current_value
-        return self.sale_price
+    def update_sale_price(self, sale_price):
+        if self.sold:
+            return Exception('Action not allowed. Bike has already been sold')
+        self.sale_price = sale_price
 
     def sell(self):
         """
@@ -45,36 +34,33 @@ class Bike(object):
         profit = self.sale_price - self.cost
         return profit
 
-    def service(self, cost, new_condition):
+    def service(self, spent, sale_price=None, condition=None):
         """
-        Service the bike and update sale price
+        Service the bike and update attributes
         """
-        self.cost += cost
-        self.condition = new_condition
-        self.update_sale_price()
-        return self.sale_price
+        self.cost += spent
+        if sale_price:
+            self.update_sale_price(sale_price)
+        if self.condition:
+            self.condition = condition
 
     def __repr__(self):
-        return f'Bike: {self.year} {self.make} {self.model} ({"sold" if self.sold else self.sale_price})'
+        sold_or_price = "sold" if self.sold else f"${self.sale_price}"
+        return f'Bike: {self.description} ({sold_or_price})'
 
     def __str__(self):
-        return f'{self.year} {self.make} {self.model}'
-
-
-def lookup_msrp_value(make, model):
-    """
-    Determine original sale price of a bike when new
-    """
-    return 1000
+        return self.description
 
 
 if __name__ == '__main__':
-    bike = Bike(100, 'Univega', 'Alpina', 1999, Condition.OKAY)  # __init__ called
+    bike = Bike('Univega Alpina, orange', Condition.OKAY, sale_price=500, cost=100)
 
-    print(bike)     # __str__ called
+    print(bike)        # __str__ called
+    print(str(bike))   # __str__ called
 
-    print([bike])   # __repr__ called
+    print([bike])      # __repr__ called
+    print(repr(bike))  # __repr__ called
 
-    del bike        # __del__ called
+    del bike           # __del__ called
 
-    Bike(0, 'Raleigh', 'Talus 2', 2013, Condition.BAD)  # __init__ and __del__ called
+    bike = Bike('Raleigh Talus 2', Condition.BAD, sale_price=20)  # __init__ and __del__ called

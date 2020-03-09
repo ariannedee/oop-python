@@ -16,9 +16,8 @@ class Player(object):
 
     def make_move(self):
         dice = random.randint(1, 6)
-        print(f'{self} roll a {dice}')
         self.score += dice
-        print(f'{self} score: {self.score}')
+        print(f'{self} roll a {dice} (score: {self.score})')
 
     def met_goal(self):
         return self.score >= 100
