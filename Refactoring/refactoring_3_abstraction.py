@@ -3,44 +3,44 @@ Simulate a simple board game.
 There are 2 players.
 Each player takes turn rolling a die and moving that number of spaces.
 The first person to space 100 wins.
-
-Object-oriented with a Player object
 """
 import random
 
 
-class Player(object):
-    def __init__(self, player_num):
+class Player:
+    def __init__(self, player_number):
         self.score = 0
-        self.player_num = player_num
+        self.player_number = player_number
+
+    def roll_die(self):
+        die = random.randint(1, 6)
+        print(f'{self} rolled a {die}')
+        return die
 
     def make_move(self):
-        dice = random.randint(1, 6)
-        self.score += dice
-        print(f'{self} roll a {dice} (score: {self.score})')
+        self.score += self.roll_die()
+        print(f'{self}: {self.score}')
 
-    def met_goal(self):
+    @property
+    def has_won(self):
         return self.score >= 100
 
     def __str__(self):
-        return f'Player {self.player_num}'
+        return f'Player {self.player_number}'
 
 
-players = []
-for i in range(1, 3):
-    players.append(Player(i))
+def play_game(num_players=2):
+    players = []
+    for i in range(num_players):
+        players.append(Player(i + 1))
 
-print('Start game!')
-while True:
-    for player in players:
-        player.make_move()       # Care about "what", not "how"
-        if player.met_goal():
-            print(f'{player} won!')
-            break
-    else:
-        continue
-    break
+    while True:
+        for player in players:
+            player.make_move()
+            if player.has_won:
+                print(f'{player} wins!')
+                return
 
-print()
-for player in players:
-    print(f'{player} score: {player.score}')
+
+if __name__ == '__main__':
+    play_game(num_players=3)
