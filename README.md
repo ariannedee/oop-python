@@ -7,9 +7,10 @@ look for the specific class [here](https://github.com/ariannedee/oop-python/rele
 
 Before the class, please follow these instructions:
 1. [Install Python](#1-install-python-36-or-higher)
-2. [Install PyCharm](#2-download-pycharm-community-edition)
-3. [Download the code](#3-download-the-course-files)
-4. [Check that Python was installed properly](#4-make-sure-that-python-is-properly-installed)
+1. [Check that Python was installed properly](#2-make-sure-that-python-is-properly-installed)
+1. [Install PyCharm](#3-download-pycharm-community-edition)
+1. [Download the code](#4-download-the-course-files)
+5. [Download the resources](#5-at-the-beginning-of-class-download-the-resources)
 
 ## Set up instructions
 ### 1. Install Python 3.6 or higher
@@ -69,8 +70,10 @@ Clone the repository.
 2. Click "Download ZIP"
 3. Unzip it and move the **oop-python-master** folder to a convenient location
 
-### 5. At the beginning of class, download the PDF of the slides
-It should be in the **Resources** widget
+### 5. At the beginning of class, download the resources
+When you have signed in to the class,
+the **Resources** widget will have PDFs for the slides and
+for a resource package that has PyCharm shortcuts, links, and a Python 2 to 3 comparison
 
 ## FAQs
 ### Can I use Python 2?
@@ -79,7 +82,9 @@ Yes. There are not many differences for this class.
 
 ### Can I use a different code editor besides PyCharm?
 
-Yes, but it is only recommended if you are already know it 
+Jupyter notebooks are not ideal since we'll be working from multiple folders throughout the class.
+
+Other IDEs like VS Code, Atom, and Spyder will work, but they are only recommended if you are already know it 
 and are comfortable navigating to different files and running commands in the command line. 
 If it has syntax highlighting for Python, that is ideal.
 
