@@ -2,6 +2,9 @@
 
 This is the code for the *Safari Live Training* - **Object-Oriented Programming in Python** presented by Arianne Dee
 
+**Note**: If you're looking for the project code for a specific date in the past,
+look for the specific class [here](https://github.com/ariannedee/oop-python/releases)
+
 Before the class, please follow these instructions:
 1. [Install Python](#1-install-python-36-or-higher)
 2. [Install PyCharm](#2-download-pycharm-community-edition)
