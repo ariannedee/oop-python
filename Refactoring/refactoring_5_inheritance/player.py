@@ -2,32 +2,35 @@ import random
 
 
 class Player:
-    num_players = 0
+    def __init__(self, player_num):
+        self._score = 0
+        self._num = player_num
 
-    def __init__(self):
-        Player.num_players += 1
-        self.score = 0
-        self.player_number = Player.num_players
+    @staticmethod
+    def _roll_die():
+        return random.randint(1, 6)
 
-    def _roll_die(self, dice_number):
-        die = random.randint(1, dice_number)
-        print(f'{self} rolled a {die}')
-        return die
+    @property
+    def score(self):
+        return self._score
 
-    def make_move(self, with_die):
-        self.score += self._roll_die(with_die)
-        print(f'{self}: {self.score}')
+    @score.setter
+    def score(self, value):
+        self._score = value
+
+    def take_turn(self):
+        roll = self._roll_die()
+        self.score += roll
+        print(f"{self} rolled a {roll} ({self.score})")
 
     def __str__(self):
-        return f'Player {self.player_number}'
+        return f'Player {self._num}'
 
 
 class LuckyPlayer(Player):
-    def _roll_die(self, dice_number):
-        die = random.randint(dice_number//2, dice_number)
-        print(f'{self} rolled a {die}')
-        return die
+    @staticmethod
+    def _roll_die():
+        return random.randint(3, 6)
 
     def __str__(self):
-        player_string = super().__str__()
-        return f'{player_string} (lucky)'
+        return f'Player {self._num} (lucky)'
