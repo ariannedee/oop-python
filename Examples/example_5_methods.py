@@ -53,4 +53,5 @@ if __name__ == '__main__':
     print(profit)
 
     my_bike.update_sale_price(1000)
-
+    my_bike.hello = 'world'
+    'world'.hi = 'hi'
