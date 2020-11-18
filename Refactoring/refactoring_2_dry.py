@@ -8,17 +8,17 @@ import random
 
 
 def play_game():
-    player_scores = [0, 0]
+    scores = [0, 0]
 
     while True:
-        for i in range(len(player_scores)):
-            player_number = i + 1
-            player_die = random.randint(1, 6)
-            player_scores[i] += player_die
-            score = player_scores[i]
-            print(f'Player {player_number} score: {score}')
+        for i, score in enumerate(scores):
+            player_num = i + 1
+            roll = random.randint(1, 6)
+            score += roll
+            scores[i] = score
+            print(f"Player {player_num} score: {score} (rolled a {roll})")
             if score >= 100:
-                print(f'Player {player_number} wins!')
+                print(f"Player {player_num} wins!")
                 return
 
 
