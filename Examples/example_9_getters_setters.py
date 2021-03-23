@@ -47,7 +47,7 @@ class Bike(object):
         """
         self.cost += spent
         if sale_price:
-            self.update_sale_price(sale_price)
+            self.sale_price = sale_price
         if self.condition:
             self.condition = condition
 
