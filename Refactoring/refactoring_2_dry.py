@@ -4,21 +4,20 @@ There are 2 players.
 Each player takes turn rolling a die and moving that number of spaces.
 The first person to space 100 wins.
 """
-import random
+from random import randint
 
 
 def play_game():
-    scores = [0, 0]
-
+    player_scores = [0, 0]
     while True:
-        for i, score in enumerate(scores):
-            player_num = i + 1
-            roll = random.randint(1, 6)
+        for i, score in enumerate(player_scores):
+            roll = randint(1, 6)
             score += roll
-            scores[i] = score
-            print(f"Player {player_num} score: {score} (rolled a {roll})")
+            player_scores[i] = score
+            player_num = i + 1
+            print(f"Player {player_num}: {score} (rolled a {roll})")
             if score >= 100:
-                print(f"Player {player_num} wins!")
+                print(f"Player {player_num} wins")
                 return
 
 
