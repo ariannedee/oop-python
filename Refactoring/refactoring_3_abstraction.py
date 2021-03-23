@@ -8,35 +8,35 @@ from random import randint
 
 
 class Player:
-    def __init__(self, player_number):
+    def __init__(self, player_num):
         self.score = 0
-        self.player_number = player_number
+        self.player_num = player_num
 
     def take_turn(self):
         roll = self._roll_die()
         self.score += roll
-        print(f"Player {self.player_number}: {self.score} (rolled a {roll})")
+        print(f"{self}: {self.score} (rolled a {roll})")
 
     @staticmethod
     def _roll_die():
         return randint(1, 6)
 
-    @property
-    def won_game(self):
+    def has_won(self):
         return self.score >= 100
 
     def __str__(self):
-        return f'Player {self.player_number}'
+        return f"Player {self.player_num}"
+
+    def __repr__(self):
+        return f"Player {self.player_num}: {self.score}"
 
 
 def play_game(num_players=2):
-    players = []
-    for i in range(num_players):
-        players.append(Player(i + 1))
+    players = [Player(i + 1) for i in range(num_players)]  # List comprehension
     while True:
         for player in players:
             player.take_turn()
-            if player.won_game:
+            if player.has_won():
                 print(f"{player} wins")
                 return
 
