@@ -13,13 +13,9 @@ class Player:
         self.player_num = player_num
 
     def take_turn(self):
-        roll = self._roll_die()
+        roll = randint(1, 6)
         self.score += roll
         print(f"{self}: {self.score} (rolled a {roll})")
-
-    @staticmethod
-    def _roll_die():
-        return randint(1, 6)
 
     def has_won(self):
         return self.score >= 100
@@ -37,7 +33,7 @@ def play_game(num_players=2):
         for player in players:
             player.take_turn()
             if player.has_won():
-                print(f"{player} wins")
+                print(f"{player} wins!")
                 return
 
 

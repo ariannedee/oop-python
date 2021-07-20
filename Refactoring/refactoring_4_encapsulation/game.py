@@ -2,39 +2,36 @@ from player import Player
 
 
 class Game:
-    counter = 0
-
     def __init__(self, num_players, target_score=100):
         self.target_score = target_score
-        self.players = [Player(i + 1) for i in range(num_players)]  # List comprehension
-        Game.counter += 1
-        self.game_num = Game.counter
+        self.players = [Player(i + 1) for i in range(num_players)]
+        self._game_over = False
+        self._winner = None
 
-    def __del__(self):
-        Game.counter -= 1
+    def run_round(self):
+        for player in self.players:
+            player.take_turn()
+            if self._player_has_won(player):
+                self._winner = player
+                self._game_over = True
 
-    def play_game(self):
-        self._game_start()
-        self._game_play()
-        self._game_end()
-
-    def _game_play(self):
-        while True:
-            for player in self.players:
-                player.take_turn()
-                if player.has_won(self.target_score):
-                    print(f"{player} wins")
-                    return
+    def _player_has_won(self, player):
+        return player.score >= self.target_score
 
     def _game_start(self):
-        print(f"{self} start")
+        print(f"Start game: {self}")
 
     def _game_end(self):
-        print(f"{self} is over\n")
+        print(f"{self._winner} wins!")
+        print("-----------------")
+
+    def run(self):
+        self._game_start()
+        while True:
+            self.run_round()
+            if self._game_over:
+                self._game_end()
+                return
 
     def __str__(self):
-        return f"Game {self.game_num}"
-
-    def __repr__(self):
-        return f"Game {self.game_num}: {len(self.players)} players"
-
+        return f"{len(self.players)}-player game to {self.target_score}"
