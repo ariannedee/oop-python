@@ -95,6 +95,6 @@ if __name__ == "__main__":
     #print(len(my_bike)) ## Also you cant really write len(my_bike) without implementing above dunder method. if you want this to work, then define it above __len__. You can comment it to see that it does not work
     #my_bike.update_sale_price()
     #my_bike.service()
-    ## Ok
+    ##
 
 
