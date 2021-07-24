@@ -1,4 +1,4 @@
-def update_sale_price(bike, sale_price):
+def update_sale_price(bike : dict, sale_price: float):
     if bike['sold'] is True:
         raise Exception("Action not allowed. Bike has already been sold")
     bike['sale_price'] = sale_price
