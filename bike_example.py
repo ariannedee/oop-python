@@ -34,4 +34,6 @@ if __name__ == "__main__":
     my_bike.update_sale_price()
     my_bike.service()
 
+    ## Ok
+
 
