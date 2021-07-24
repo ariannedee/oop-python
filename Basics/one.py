@@ -8,3 +8,6 @@ if __name__ == "__main__":
     print("one.py is being run directly")
 else:
     print("one.py is being imported into another module")
+
+
+## Output is - top-level in one.py one.py is being run directly

@@ -16,3 +16,5 @@ print("m1")
 functionA()
 print("m2")
 print("t2")
+
+## Output is-> t1 m1 a1  -- t1 m1 a1 a2 b a3 m2 t2 -- a2 b a3 -- m2 t2
