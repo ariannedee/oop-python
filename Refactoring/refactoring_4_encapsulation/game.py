@@ -2,36 +2,39 @@ from player import Player
 
 
 class Game:
+    counter = 0
+
     def __init__(self, num_players, target_score=100):
+        self.players = [Player(i) for i in range(1, num_players + 1)]
         self.target_score = target_score
-        self.players = [Player(i + 1) for i in range(num_players)]
-        self._game_over = False
-        self._winner = None
+        Game.counter += 1
+        self.game_num = Game.counter
 
-    def run_round(self):
-        for player in self.players:
-            player.take_turn()
-            if self._player_has_won(player):
-                self._winner = player
-                self._game_over = True
-
-    def _player_has_won(self, player):
-        return player.score >= self.target_score
-
-    def _game_start(self):
-        print(f"Start game: {self}")
-
-    def _game_end(self):
-        print(f"{self._winner} wins!")
-        print("-----------------")
-
-    def run(self):
-        self._game_start()
+    def run_game(self):
+        print()
+        print(f"{self} started")
         while True:
-            self.run_round()
-            if self._game_over:
-                self._game_end()
+            for player in self.players:
+                player.take_turn()
+            if self.game_over():
+                winners = self.get_winners()
+                if len(winners) == 1:
+                    print(f"{winners[0]} wins!")
+                else:
+                    print(f"{', '.join(winners)} win!")
                 return
 
+    def game_over(self):
+        for player in self.players:
+            if player.score >= self.target_score:
+                return True
+        return False
+
+    def get_winners(self):
+        return [
+            str(player) for player in self.players
+            if player.score >= self.target_score
+        ]
+
     def __str__(self):
-        return f"{len(self.players)}-player game to {self.target_score}"
+        return f"Game {self.game_num}"

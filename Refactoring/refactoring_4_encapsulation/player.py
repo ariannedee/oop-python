@@ -3,16 +3,17 @@ from random import randint
 
 class Player:
     def __init__(self, player_num):
-        self._score = 0
         self.player_num = player_num
+        self._score = 0
 
     def take_turn(self):
-        roll = randint(1, 6)
-        self._score += roll
-        print(f"{self}: {self._score} (rolled a {roll})")
+        player_roll = self._roll()
+        self._score += player_roll
+        print(f"{self} score is {self._score} (rolled a {player_roll})")
 
-    def has_won(self):
-        return self._score >= 100
+    @staticmethod
+    def _roll():
+        return randint(1, 6)
 
     @property
     def score(self):
@@ -20,3 +21,6 @@ class Player:
 
     def __str__(self):
         return f"Player {self.player_num}"
+
+    def __repr__(self):
+        return f"Player({self.player_num})"
