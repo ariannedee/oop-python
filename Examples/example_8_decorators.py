@@ -3,10 +3,10 @@ from enum import Enum
 
 
 class Condition(Enum):
-    NEW = 1
-    GOOD = 0.8
-    OKAY = 0.5
-    BAD = 0.2
+    NEW = 0
+    GOOD = 1
+    OKAY = 2
+    BAD = 3
 
 
 class MethodNotAllowed(Exception):
