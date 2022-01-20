@@ -7,7 +7,8 @@ The first person to space 100 wins.
 from game import Game  # In PyCharm, mark parent directory as Sources Root for imports to work
 
 if __name__ == '__main__':
-    game1 = Game(2)
-    game1.run_game()
-    game2 = Game(4, target_score=50)
-    game2.run_game()
+    game_1 = Game(num_players=4, target_score=20)
+    game_2 = Game(num_players=3)
+
+    game_2.run()
+    game_1.run()

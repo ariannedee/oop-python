@@ -1,15 +1,10 @@
-from random import randint, random
+from random import randint
 
 
-class Player(object):
+class Player:
     def __init__(self, player_num):
-        self.player_num = player_num
         self._score = 0
-
-    def take_turn(self):
-        player_roll = self._roll()
-        self._score += player_roll
-        print(f"{self} score is {self._score} (rolled a {player_roll})")
+        self.num = player_num
 
     @staticmethod
     def _roll():
@@ -19,11 +14,16 @@ class Player(object):
     def score(self):
         return self._score
 
+    def make_move(self):
+        roll = self._roll()
+        self._score += roll
+        print(f"{self} score: {self.score} (rolled a {roll})")
+
     def __str__(self):
-        return f"Player {self.player_num}"
+        return f"Player {self.num}"
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.player_num})"
+        return f"{type(self).__name__}({self.num})"
 
 
 class LuckyPlayer(Player):
@@ -32,11 +32,5 @@ class LuckyPlayer(Player):
         return randint(3, 6)
 
     def __str__(self):
-        string = super().__str__()
-        return string + " (lucky)"
-
-
-def get_player(player_num):
-    if random() > 0.5:
-        return LuckyPlayer(player_num)
-    return Player(player_num)
+        player_str = super(Player, self).__str__()
+        return f"{player_str} (lucky)"
