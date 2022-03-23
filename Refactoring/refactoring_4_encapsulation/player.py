@@ -17,7 +17,7 @@ class Player:
 
     @staticmethod
     def _roll():
-        return random.randint(1, 6)
+        return random.SystemRandom().randint(1,6)
 
     def __str__(self):
         return f'Player {self.num}'
