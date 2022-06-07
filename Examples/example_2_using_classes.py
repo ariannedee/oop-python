@@ -1,6 +1,6 @@
 from Examples.example_5_methods import Bike, Condition
 
-my_bike = Bike(description='Univega Alpina, orange',
+my_bike = Bike('Univega Alpina, orange',
                condition=Condition.OKAY,
                sale_price=500,
                cost=100)
