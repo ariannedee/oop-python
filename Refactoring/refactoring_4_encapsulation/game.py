@@ -4,46 +4,41 @@ from player import Player
 class Game:
     counter = 0
 
-    def __init__(self, num_players, target_score=100):
+    def __init__(self, num_players=2, target_score=100):
         self.target_score = target_score
         self.players = [Player(i + 1) for i in range(num_players)]
         Game.counter += 1
         self.num = Game.counter
 
-    def start(self):
-        print(f'---- {self} start ----')
-
-    def end(self):
-        print(f'---- {self} end ----')
-
     def run(self):
-        self.start()
-        self.take_turns()
-        self.end()
-
-    def take_turns(self):
+        print(f'-- {self} start --')
         while True:
             for player in self.players:
-                player.take_turn()
-            if self.game_over():
+                player.make_move()
+            if self.is_over():
                 print(f'{self.winner} wins!')
-                return
+                break
+        print(f'-- {self} end --')
 
-    def game_over(self):
+    def is_over(self):
         for player in self.players:
             if player.score >= self.target_score:
                 return True
-        return False
 
     @property
     def winner(self):
-        max_score = -1
-        max_player = None
+        if not self.is_over():
+            return None
+        max_score = 0
+        winner = None
         for player in self.players:
             if player.score > max_score:
                 max_score = player.score
-                max_player = player
-        return max_player
+                winner = player
+        return winner
 
     def __str__(self):
         return f'Game {self.num}'
+
+    def __repr__(self):
+        return f'Game({len(self.players)})'
