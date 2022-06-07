@@ -4,7 +4,7 @@ There are 2 players.
 Each player takes turn rolling a die and moving that number of spaces.
 The first person to space 100 wins.
 """
-import random
+from random import randint
 
 
 class Player:
@@ -12,8 +12,8 @@ class Player:
         self.score = 0
         self.num = num
 
-    def take_turn(self):
-        roll = random.randint(1, 6)
+    def make_move(self):
+        roll = randint(1, 6)
         self.score += roll
         print(f'{self} rolled a {roll} ({self.score})')
 
@@ -27,15 +27,20 @@ class Player:
         return f'Player({self.num})'
 
 
-def run_game(num_players=2):
+def play_game(num_players=2):
     players = [Player(i + 1) for i in range(num_players)]
     while True:
         for player in players:
-            player.take_turn()
+            player.make_move()
             if player.has_won():
                 print(f'{player} wins!')
                 return
 
 
 if __name__ == '__main__':
-    run_game(num_players=3)
+    print("-- Game 1 start --")
+    play_game(num_players=3)
+    print("-- Game 1 end --")
+    print("-- Game 2 start --")
+    play_game(num_players=4)
+    print("-- Game 2 end --")
