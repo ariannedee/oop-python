@@ -8,11 +8,11 @@ from random import randint
 
 
 class Player:
-    def __init__(self, num):
+    def __init__(self, player_num):
+        self.num = player_num
         self.score = 0
-        self.num = num
 
-    def make_move(self):
+    def take_turn(self):
         roll = randint(1, 6)
         self.score += roll
         print(f'{self} rolled a {roll} ({self.score})')
@@ -27,20 +27,19 @@ class Player:
         return f'Player({self.num})'
 
 
-def play_game(num_players=2):
-    players = [Player(i + 1) for i in range(num_players)]
+def run_game(num_players=2):
+    players = [Player(i) for i in range(1, num_players + 1)]
+    print("------ START GAME -------")
     while True:
         for player in players:
-            player.make_move()
+            player.take_turn()
+
             if player.has_won():
                 print(f'{player} wins!')
+                print("------ END GAME -------")
                 return
 
 
 if __name__ == '__main__':
-    print("-- Game 1 start --")
-    play_game(num_players=3)
-    print("-- Game 1 end --")
-    print("-- Game 2 start --")
-    play_game(num_players=4)
-    print("-- Game 2 end --")
+    run_game(2)
+    run_game(3)
