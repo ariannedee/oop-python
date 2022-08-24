@@ -7,6 +7,8 @@ class Condition(Enum):
     OKAY = 2
     BAD = 3
 
+class MethodNotAllowed(Exception):
+    pass
 
 class Bike(object):
     def __init__(self, description, condition, sale_price, cost=0):
@@ -23,7 +25,7 @@ class Bike(object):
 
     def update_sale_price(self, sale_price):
         if self.sold:
-            return Exception('Action not allowed. Bike has already been sold')
+            raise MethodNotAllowed('Action not allowed. Bike has already been sold')
         self.sale_price = sale_price
 
     def sell(self):

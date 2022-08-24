@@ -51,17 +51,20 @@ class Bike(object):
         if self.condition:
             self.condition = condition
 
+class Tricycle(Bike):
+    num_wheels = 3
+
 
 if __name__ == '__main__':
-    bike1 = Bike('Univega Alpina, orange', Condition.OKAY, sale_price=500, cost=100)
-    bike2 = Bike('Raleigh Talus 2', Condition.BAD, sale_price=20)
+    bike = Bike('Univega Alpina, orange', Condition.OKAY, sale_price=500, cost=100)
+    trike = Tricycle('Raleigh Talus 2', Condition.BAD, sale_price=20)
 
     # All print 2
-    print(bike2.num_wheels)
-    print(bike1.num_wheels)
+    print(trike.num_wheels)
+    print(bike.num_wheels)
     print(Bike.num_wheels)
 
     print(Bike.count)  # 2
 
-    del bike1
+    del bike
     print(Bike.count)  # 1
