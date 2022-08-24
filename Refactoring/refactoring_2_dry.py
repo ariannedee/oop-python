@@ -25,8 +25,8 @@ def run_game(num_players=2):
 
             if score >= 100:
                 print(f'Player {player_num} wins!')
+                print("------ END GAME -------")
                 return
-    print("------ END GAME -------")
 
 
 if __name__ == '__main__':
