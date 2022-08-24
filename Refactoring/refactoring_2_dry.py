@@ -7,9 +7,14 @@ The first person to space 100 wins.
 from random import randint
 
 
-def play_game(num_players=2):
-    scores = [0 for _ in range(num_players)]
+def run_game(num_players=2):
+    # scores = []
+    # for _ in range(num_players):
+    #     scores.append(0)
 
+    scores = [0 for _ in range(num_players)]  # as list comprehension
+
+    print("------ START GAME -------")
     while True:
         for i, score in enumerate(scores):
             player_num = i + 1
@@ -21,12 +26,9 @@ def play_game(num_players=2):
             if score >= 100:
                 print(f'Player {player_num} wins!')
                 return
+    print("------ END GAME -------")
 
 
 if __name__ == '__main__':
-    print("-- Game 1 start --")
-    play_game(num_players=3)
-    print("-- Game 1 end --")
-    print("-- Game 2 start --")
-    play_game(num_players=4)
-    print("-- Game 2 end --")
+    run_game(2)
+    run_game(3)
