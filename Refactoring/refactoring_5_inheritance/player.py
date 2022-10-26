@@ -2,43 +2,41 @@ from random import randint
 
 
 class Player:
-    count = 0
-
-    def __init__(self, player_num):
-        self.num = player_num
+    def __init__(self, number):
         self._score = 0
-        Player.count += 1
-
-    def take_turn(self):
-        roll = self._roll()
-        self._score += roll
-        print(f'{self} rolled a {roll} ({self._score})')
-
-    @staticmethod
-    def _roll():
-        return randint(1, 6)
+        self.number = number
 
     @property
     def score(self):
         return self._score
 
+    def take_turn(self):
+        roll = self.roll()
+        self._score += roll
+        print(f"{self} rolled a {roll} (total: {self.score})")
+
+    @staticmethod
+    def roll():
+        return randint(1, 6)
+
     def __str__(self):
-        return f'Player {self.num}'
+        return f"PLAYER {self.number}"
 
     def __repr__(self):
-        return f'Player({self.num})'
+        return f"Player({self.number})"
 
 
 class LuckyPlayer(Player):
     @staticmethod
-    def _roll():
+    def roll():
         return randint(3, 6)
 
     def __str__(self):
-        return f'{super().__str__()} (lucky)'
+        player_str = super().__str__()
+        return f"{player_str} (lucky)"
 
 
-def create_player(player_num):
-    if Player.count % 3 == 0:
-        return LuckyPlayer(player_num)
-    return Player(player_num)
+def get_player(num):
+    if num % 2 == 0:
+        return LuckyPlayer(num)
+    return Player(num)
