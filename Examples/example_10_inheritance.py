@@ -28,6 +28,9 @@ class Rectangle(Shape):
         self.l = length
         self.w = width
 
+    def area(self):
+        return self.l * self.w
+
     def circumference(self):
         return 2 * self.l + 2 * self.w
 
