@@ -3,10 +3,10 @@ from math import pi
 
 class Shape(object):
     def area(self):
-        raise NotImplemented
+        raise NotImplementedError()
 
     def circumference(self):
-        raise NotImplemented
+        raise NotImplementedError()
 
     def __str__(self):
         return type(self).__name__
@@ -27,9 +27,6 @@ class Rectangle(Shape):
     def __init__(self, length, width):
         self.l = length
         self.w = width
-
-    def area(self):
-        return self.l * self.w
 
     def circumference(self):
         return 2 * self.l + 2 * self.w
