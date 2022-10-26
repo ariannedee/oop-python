@@ -8,38 +8,34 @@ from random import randint
 
 
 class Player:
-    def __init__(self, player_num):
-        self.num = player_num
+    def __init__(self, number):
         self.score = 0
+        self.number = number
 
     def take_turn(self):
         roll = randint(1, 6)
         self.score += roll
-        print(f'{self} rolled a {roll} ({self.score})')
-
-    def has_won(self):
-        return self.score >= 100
+        print(f"{self} rolled a {roll} (total: {self.score})")
 
     def __str__(self):
-        return f'Player {self.num}'
+        return f"Player {self.number}"
 
     def __repr__(self):
-        return f'Player({self.num})'
+        return f"Player({self.number})"
 
 
-def run_game(num_players=2):
-    players = [Player(i) for i in range(1, num_players + 1)]
-    print("------ START GAME -------")
+def run_game(num_players, target_score=100):
+    players = [Player(i + 1) for i in range(num_players)]
+    print("--- GAME START ---")
     while True:
         for player in players:
             player.take_turn()
-
-            if player.has_won():
-                print(f'{player} wins!')
-                print("------ END GAME -------")
+            if player.score >= target_score:
+                print(f"{player} wins!")
+                print("--- GAME END ---\n")
                 return
 
 
 if __name__ == '__main__':
     run_game(2)
-    run_game(3)
+    run_game(3, target_score=40)
