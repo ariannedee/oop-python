@@ -1,42 +1,48 @@
-from random import randint
+from random import randint, random
+
+class MethodNotDefined(Exception):
+    pass
 
 
-class Player:
-    def __init__(self, number):
+class RollerMixin:
+    @staticmethod
+    def roll_die():
+        raise MethodNotDefined()
+
+
+class Player(RollerMixin):
+    def __init__(self, num):
+        self.num = num
         self._score = 0
-        self.number = number
+
+    def take_turn(self):
+        roll = self.roll_die()
+        self._score += roll
+        print(f"{self}: {self._score} (rolled a {roll})")
+
+    @staticmethod
+    def roll_die():
+        return randint(1, 6)
 
     @property
     def score(self):
         return self._score
 
-    def take_turn(self):
-        roll = self.roll()
-        self._score += roll
-        print(f"{self} rolled a {roll} (total: {self.score})")
-
-    @staticmethod
-    def roll():
-        return randint(1, 6)
-
     def __str__(self):
-        return f"PLAYER {self.number}"
-
-    def __repr__(self):
-        return f"Player({self.number})"
+        return f"Player {self.num}"
 
 
 class LuckyPlayer(Player):
     @staticmethod
-    def roll():
+    def roll_die():
         return randint(3, 6)
 
     def __str__(self):
-        player_str = super().__str__()
-        return f"{player_str} (lucky)"
+        base = super().__str__()
+        return f"{base} (lucky)"
 
 
 def get_player(num):
-    if num % 2 == 0:
-        return LuckyPlayer(num)
-    return Player(num)
+    if random() > 0.5:
+        return Player(num)
+    return LuckyPlayer(num)
