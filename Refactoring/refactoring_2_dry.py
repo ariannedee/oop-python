@@ -7,18 +7,34 @@ The first person to space 100 wins.
 from random import randint
 
 
+class Player:
+    def __init__(self, num):
+        self.score = 0
+        self.num = num
+
+    def take_turn(self):
+        roll = randint(1, 6)
+        self.score += roll
+        print(f"{self}: {self.score} (rolled a {roll})")
+
+    def has_won(self):
+        return self.score >= 100
+
+    def __str__(self):
+        return f"Player {self.num}"
+
+    def __repr__(self):
+        pass
+
+
 def run_game(num_players=2):
-    scores = [0 for _ in range(num_players)]
+    players = [Player(i + 1) for i in range(num_players)]
 
     while True:
-        for i, score in enumerate(scores):
-            player_num = i + 1
-            roll = randint(1, 6)
-            score += roll
-            scores[i] = score
-            print(f"Player {player_num}: {score} (rolled a {roll})")
-            if score >= 100:
-                print(f"Player {player_num} wins!")
+        for player in players:
+            player.take_turn()
+            if player.has_won():
+                print(f"{player} wins!")
                 return
 
 
