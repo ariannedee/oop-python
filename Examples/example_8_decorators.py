@@ -1,4 +1,4 @@
-from datetime import datetime
+import random
 from enum import Enum
 
 
@@ -52,35 +52,39 @@ class Bike(object):
         return self.sale_price - self.cost
 
     @staticmethod
-    def age(year):
-        current_year = datetime.now().year
-        age = current_year - year
-        if age < 1:
-            return "New"
-        elif age < 5:
-            return "Recent"
-        elif age < 40:
-            return "Old"
-        else:
-            return "Vintage"
+    def get_test_bike():
+        return Bike(
+            description="A test bike",
+            condition=random.choice(list(Condition)),
+            sale_price=random.randrange(100, 500, 25),
+            cost=random.randrange(0, 100, 10)
+        )
 
     @classmethod
-    def get_default_bike(cls):
+    def get_test_object(cls):
         return cls(
-            description="A default bike",
-            condition=Condition.GOOD,
-            sale_price=100
+            description=f"A test {cls.__name__}",
+            condition=random.choice(list(Condition)),
+            sale_price=random.randrange(100, 500, 25),
+            cost=random.randrange(0, 100, 10)
         )
+
+    def __str__(self):
+        return f"{type(self).__name__}: selling for ${self.sale_price}, cost: ${self.cost} ({self.condition.name.lower()})"
+
+
+class Trike(Bike):
+    pass
 
 
 if __name__ == '__main__':
 
-    bike = Bike.get_default_bike()  # Class method
-
+    bike = Bike.get_test_bike()  # Class method
+    print(bike)
     bike.sell()
-    print(bike.profit)    # Call property
+    print(bike.profit)  # Call property
 
-    # Call static methods
-    print(bike.age(1975))  # Vintage
-    print(Bike.age(2019))  # Recent
+    # Call methods on subclass
+    print(Trike.get_test_bike())    # staticmethod
+    print(Trike.get_test_object())  # classmethod
 

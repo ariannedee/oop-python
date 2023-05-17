@@ -1,3 +1,4 @@
+import random
 from enum import Enum
 
 
@@ -52,22 +53,23 @@ class Bike(object):
             self.condition = condition
 
     @classmethod
-    def get_default_bike(cls):
+    def get_test_object(cls):
         return cls(
-            description="A default bike",
-            condition=Condition.GOOD,
-            sale_price=100
+            description=f"A test {cls.__name__}",
+            condition=random.choice(list(Condition)),
+            sale_price=random.randrange(100, 500, 25),
+            cost=random.randrange(0, 100, 10)
         )
 
 
 if __name__ == '__main__':
-    bike = Bike.get_default_bike()  # Class method
+    bike = Bike.get_test_object()  # Class method
 
-    print(bike.sale_price)  # 100
+    print(bike.sale_price)
 
-    bike.sale_price = 300
-    print(bike.sale_price)  # 300
+    bike.sale_price = 1000  # Calls setter
+    print(bike.sale_price)  # 1000
 
     bike.sell()
-    bike.sale_price = 200   # Exception raised
+    bike.sale_price = 999  # Exception raised
 
