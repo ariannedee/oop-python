@@ -7,7 +7,7 @@ The first person to space 100 wins.
 from game import Game
 
 if __name__ == '__main__':
-    game1 = Game(num_players=3, target_score=50)
-    game2 = Game(num_players=2)
-    game2.run_game()
-    game1.run_game()
+    game_1 = Game(1, num_players=3, target_score=50)
+    game_2 = Game(2, num_players=4, target_score=20)
+    game_2.run()
+    game_1.run()

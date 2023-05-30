@@ -2,11 +2,17 @@ from player import Player
 
 
 class Game:
-    def __init__(self, num_players=2, target_score=100):
+    def __init__(self, game_num, num_players=2, target_score=100):
+        self.num = game_num
         self.target_score = target_score
         self.players = [Player(i + 1) for i in range(num_players)]
 
-    def run_game(self):
+    def run(self):
+        print(f"{self} START")
+        self.run_rounds()
+        print(f"{self} END")
+
+    def run_rounds(self):
         while True:
             for player in self.players:
                 player.take_turn()
@@ -15,10 +21,7 @@ class Game:
                 return
 
     def game_over(self):
-        for player in self.players:
-            if player.score >= self.target_score:
-                return True
-        return False
+        return any(filter(lambda player: player.score > self.target_score, self.players))
 
     @property
     def winner(self):
@@ -27,4 +30,8 @@ class Game:
         for player in self.players:
             if player.score > max_score:
                 winner = player
+                max_score = player.score
         return winner
+
+    def __str__(self):
+        return f"Game {self.num}"
