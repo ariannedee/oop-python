@@ -8,9 +8,9 @@ from random import randint
 
 
 class Player:
-    def __init__(self, player_num):
+    def __init__(self, player_num, score=0):
         self.num = player_num
-        self.score = 0
+        self.score = score
 
     def take_turn(self):
         roll = randint(1, 6)
@@ -24,25 +24,26 @@ class Player:
         return f"Player {self.num}"
 
     def __repr__(self):
-        return f"Player({self.num})"
+        return f"Player({self.num}, {self.score})"
 
 
-def play_game(num_players=2, target_score=100):
-    players = [Player(i+1) for i in range(num_players)]
+def run_game(num_players=2, target_score=100):
+    players = [Player(i + 1) for i in range(num_players)]
 
     while True:
         for player in players:
             player.take_turn()
+
             if player.has_won(target_score):
                 print(f"{player} wins!")
                 return
 
 
 if __name__ == '__main__':
-    print("Game 1 START")
-    play_game(num_players=3, target_score=50)
-    print("Game 1 END")
+    print("---- GAME 1 START ----")
+    run_game(num_players=4, target_score=20)
+    print("---- GAME 1 END ----")
     print()
-    print("Game 2 START")
-    play_game(num_players=4, target_score=20)
-    print("Game 2 END")
+    print("---- GAME 2 START ----")
+    run_game(num_players=3, target_score=50)
+    print("---- GAME 2 END ----")
