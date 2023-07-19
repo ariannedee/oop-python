@@ -2,36 +2,45 @@ from player import Player
 
 
 class Game:
-    def __init__(self, game_num, num_players=2, target_score=100):
-        self.num = game_num
+    counter = 0
+
+    def __init__(self, num_players=2, target_score=100):
         self.target_score = target_score
         self.players = [Player(i + 1) for i in range(num_players)]
+        Game.counter += 1
+        self.num = Game.counter
 
-    def run(self):
-        print(f"{self} START")
-        self.run_rounds()
-        print(f"{self} END")
+    def start(self):
+        print(f"---- {self} START ----")
+        self._run_game()
+        print(f"---- {self} END ----")
 
-    def run_rounds(self):
+    def game_over(self):
+        for player in self.players:
+            if player._score >= self.target_score:
+                return True
+
+    def get_winner(self):
+        winner = None
+        score = 0
+        for player in self.players:
+            if player._score > score:
+                winner = player
+                score = player._score
+        return winner
+
+    def _run_game(self):
         while True:
             for player in self.players:
                 player.take_turn()
+
             if self.game_over():
-                print(f"{self.winner} wins!")
+                winner = self.get_winner()
+                print(f"{winner} wins!")
                 return
-
-    def game_over(self):
-        return any(filter(lambda player: player.score > self.target_score, self.players))
-
-    @property
-    def winner(self):
-        winner = None
-        max_score = 0
-        for player in self.players:
-            if player.score > max_score:
-                winner = player
-                max_score = player.score
-        return winner
 
     def __str__(self):
         return f"Game {self.num}"
+
+    def __repr__(self):
+        return f"Game({len(self.players)}, {self.target_score})"
