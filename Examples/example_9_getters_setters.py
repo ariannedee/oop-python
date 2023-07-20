@@ -14,8 +14,6 @@ class MethodNotAllowed(Exception):
 
 
 class Bike(object):
-    min_profit = 10
-
     def __init__(self, description, condition, sale_price, cost=0):
         self.description = description
         self.condition = condition
@@ -32,7 +30,10 @@ class Bike(object):
     def sale_price(self, sale_price):
         if self.sold:
             raise MethodNotAllowed('Bike has already been sold')
-        self._sale_price = sale_price
+        if sale_price < 0:
+            raise ValueError("Sale price must be non-negative")
+        else:
+            self._sale_price = sale_price
 
     def sell(self):
         """
