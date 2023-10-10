@@ -2,9 +2,9 @@ from random import randint
 
 
 class Player:
-    def __init__(self, player_num, score=0):
-        self.num = player_num
-        self._score = score
+    def __init__(self, num):
+        self.num = num
+        self._score = 0
 
     @property
     def score(self):
@@ -17,6 +17,3 @@ class Player:
 
     def __str__(self):
         return f"Player {self.num}"
-
-    def __repr__(self):
-        return f"Player({self.num}, {self._score})"
