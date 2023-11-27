@@ -43,7 +43,7 @@ class Bike:
 
 
 if __name__ == '__main__':
-    my_bike = Bike("Red Releigh cruiser", Condition.GOOD, 450, 50)
+    my_bike = Bike("Red Raleigh cruiser", Condition.GOOD, 450, 50)
     print(my_bike)
 
     my_bike.update_sale_price(400)

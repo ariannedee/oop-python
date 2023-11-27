@@ -7,8 +7,10 @@ class Condition(Enum):
     OKAY = 2
     BAD = 3
 
+
 class MethodNotAllowed(Exception):
     pass
+
 
 class Bike(object):
     def __init__(self, description, condition, sale_price, cost=0):

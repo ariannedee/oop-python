@@ -51,6 +51,7 @@ class Bike(object):
         if self.condition:
             self.condition = condition
 
+
 class Tricycle(Bike):
     num_wheels = 3
 
