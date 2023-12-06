@@ -65,7 +65,7 @@ Clone the repository.
 #### If you don't know git:
 1. Click the "Clone or download" (green) button at the top-right of the page
 2. Click "Download ZIP"
-3. Unzip it and move the **oop-python-master** folder to a convenient location
+3. Unzip it and move the **oop-python-main** folder to a convenient location
 
 ### 5. At the beginning of class, download the resources
 When you have signed in to the class,
