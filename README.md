@@ -1,9 +1,6 @@
 # Object-Oriented Programming in Python Live Training
 
-This is the code for the *Safari Live Training* - **Object-Oriented Programming in Python** presented by Arianne Dee
-
-**Note**: If you're looking for the project code for a specific date in the past,
-look for the specific class [here](https://github.com/ariannedee/oop-python/releases)
+This is the code for the *O'Reilly Live Training* - **Object-Oriented Programming in Python** presented by Arianne Dee
 
 Before the class, please follow these instructions:
 1. [Install Python](#1-install-python-36-or-higher)
