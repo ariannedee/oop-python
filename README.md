@@ -3,14 +3,14 @@
 This is the code for the *O'Reilly Live Training* - **Object-Oriented Programming in Python** presented by Arianne Dee
 
 Before the class, please follow these instructions:
-1. [Install Python](#1-install-python-36-or-higher)
+1. [Install Python](#1-install-python-38-or-higher)
 1. [Check that Python was installed properly](#2-make-sure-that-python-is-properly-installed)
 1. [Install PyCharm](#3-download-pycharm-community-edition)
 1. [Download the code](#4-download-the-course-files)
 5. [Download the resources](#5-at-the-beginning-of-class-download-the-resources)
 
 ## Set up instructions
-### 1. Install Python 3.6 or higher
+### 1. Install Python 3.8 or higher
 Go to https://www.python.org/downloads/
 
 Click the yellow button at the top to download the latest version of Python.
@@ -38,7 +38,7 @@ or *Terminal* on Mac or Linux
 1. Type `python3 --version` and press enter
 
 1. One or both of those commands should print 
-a Python version of 3.6 or higher 
+a Python version of 3.8 or higher 
 (whichever version you just downloaded).
  If it doesn't, you have to follow instructions to
  [add Python to your PATH variable](docs/WINSETPATH.md).
