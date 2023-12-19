@@ -12,7 +12,7 @@ class Player:
         self.num = num
         self.score = 0
 
-    def take_turn(self):
+    def do_turn(self):
         roll = randint(1, 6)
         self.score += roll
         print(f"{self}: {self.score} (rolled a {roll})")
@@ -21,21 +21,21 @@ class Player:
         return f"Player {self.num}"
 
 
-def run_game(num_players=2):
+def run_game(num_players=2, target_score=100):
     players = [Player(i + 1) for i in range(num_players)]
 
     while True:
         for player in players:
-            player.take_turn()
-            if player.score >= 100:
+            player.do_turn()
+            if player.score >= target_score:
                 print(f"{player} wins!")
                 return
 
 
 if __name__ == '__main__':
-    print("=== GAME 1 START ===")
-    run_game(num_players=2)
-    print("=== GAME 1 END ===")
-    print("=== GAME 2 START ===")
+    print("---- GAME 1 START ----")
     run_game(num_players=3)
-    print("=== GAME 2 END ===")
+    print("---- GAME 1 END ----")
+    print("---- GAME 2 START ----")
+    run_game(num_players=2, target_score=40)
+    print("---- GAME 2 END ----")
