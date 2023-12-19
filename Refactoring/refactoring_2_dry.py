@@ -7,7 +7,7 @@ The first person to space 100 wins.
 from random import randint
 
 
-def run_game(num_players=2):
+def run_game(num_players=2, target_score=100):
     scores = [0 for _ in range(num_players)]
 
     while True:
@@ -17,16 +17,15 @@ def run_game(num_players=2):
             score += roll
             scores[i] = score
             print(f"Player {player_num}: {score} (rolled a {roll})")
-
-            if score >= 100:
+            if score >= target_score:
                 print(f"Player {player_num} wins!")
                 return
 
 
 if __name__ == '__main__':
-    print("=== GAME 1 START ===")
-    run_game(num_players=2)
-    print("=== GAME 1 END ===")
-    print("=== GAME 2 START ===")
+    print("---- GAME 1 START ----")
     run_game(num_players=3)
-    print("=== GAME 2 END ===")
+    print("---- GAME 1 END ----")
+    print("---- GAME 2 START ----")
+    run_game(num_players=2, target_score=40)
+    print("---- GAME 2 END ----")
