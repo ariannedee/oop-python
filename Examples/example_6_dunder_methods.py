@@ -49,8 +49,7 @@ class Bike(object):
             self.condition = condition
 
     def __repr__(self):
-        sold_or_price = "sold" if self.sold else f"${self.sale_price}"
-        return f'Bike: {self.description} ({sold_or_price})'
+        return f"Bike({repr(self.description)}, {self.condition}, {self.sale_price}, {self.cost})"
 
     def __str__(self):
         return self.description
