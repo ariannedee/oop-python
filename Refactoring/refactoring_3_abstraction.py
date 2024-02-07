@@ -12,13 +12,19 @@ class Player:
         self.num = num
         self.score = 0
 
-    def do_turn(self):
+    def take_turn(self):
         roll = randint(1, 6)
         self.score += roll
         print(f"{self}: {self.score} (rolled a {roll})")
 
+    def has_won(self, target_score):
+        return self.score >= target_score
+
     def __str__(self):
         return f"Player {self.num}"
+
+    def __repr__(self):
+        return f"Player({self.num})"
 
 
 def run_game(num_players=2, target_score=100):
@@ -26,8 +32,8 @@ def run_game(num_players=2, target_score=100):
 
     while True:
         for player in players:
-            player.do_turn()
-            if player.score >= target_score:
+            player.take_turn()
+            if player.has_won(target_score):
                 print(f"{player} wins!")
                 return
 
