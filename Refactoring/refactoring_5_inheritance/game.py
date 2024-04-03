@@ -10,31 +10,35 @@ class Game:
         Game.counter += 1
         self.num = Game.counter
 
-    def run(self):
-        print(f"---- {self} START ----".upper())
-        self._take_turns()
-        print(f"---- {self} END ----".upper())
+    def __str__(self):
+        return f"Game {self.num}"
 
-    def check_if_game_over(self):
-        game_over = False
-        winner = None
-        high_score = 0
-        for player in self.players:
-            if player.score > high_score:
-                winner = player
-                high_score = player.score
-            if player.score >= self.target_score:
-                game_over = True
-        return game_over, winner
+    def start(self):
+        print(f"--- {self} START ---".upper())
+        self._run()
+        print(f"--- {self} END ---".upper())
 
-    def _take_turns(self):
+    def _run(self):
         while True:
             for player in self.players:
                 player.take_turn()
-            game_over, winner = self.check_if_game_over()
-            if game_over:
-                print(f"{winner} wins!")
+
+            if self.is_over():
+                print(f"{self.winner} wins!")
                 return
 
-    def __str__(self):
-        return f"Game {self.num}"
+    def is_over(self):
+        for player in self.players:
+            if player.score >= self.target_score:
+                return True
+        return False
+
+    @property
+    def winner(self):
+        win_player = None
+        max_score = -1
+        for player in self.players:
+            if player.score > max_score:
+                win_player = player
+                max_score = player.score
+        return win_player
