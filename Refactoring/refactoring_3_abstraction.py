@@ -30,7 +30,7 @@ def run_game(num_players=2, target_score=100):
     while True:
         for player in players:
             player.take_turn()
-            if player.score >= 100:
+            if player.score >= target_score:
                 print(f"{player} wins!")
                 return
 
