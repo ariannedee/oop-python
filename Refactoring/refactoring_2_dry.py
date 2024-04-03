@@ -23,9 +23,10 @@ def run_game(num_players=2, target_score=100):
 
 
 if __name__ == '__main__':
-    print("---- GAME 1 START ----")
-    run_game(num_players=3)
-    print("---- GAME 1 END ----")
-    print("---- GAME 2 START ----")
-    run_game(num_players=2, target_score=40)
-    print("---- GAME 2 END ----")
+    print("--- GAME 1 START ---")
+    run_game(num_players=5, target_score=30)
+    print("--- GAME 1 END ---")
+    print()
+    print("--- GAME 2 START ---")
+    run_game(num_players=3, target_score=60)
+    print("--- GAME 2 END ---")
