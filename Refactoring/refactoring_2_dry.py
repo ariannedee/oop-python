@@ -8,7 +8,9 @@ from random import randint
 
 
 def run_game(num_players=2, target_score=100):
-    scores = [0 for _ in range(num_players)]
+    scores = []
+    for i in range(num_players):
+        scores.append(0)
 
     while True:
         for i, score in enumerate(scores):
@@ -24,9 +26,8 @@ def run_game(num_players=2, target_score=100):
 
 if __name__ == '__main__':
     print("--- GAME 1 START ---")
-    run_game(num_players=5, target_score=30)
+    run_game(num_players=3, target_score=50)
     print("--- GAME 1 END ---")
-    print()
     print("--- GAME 2 START ---")
-    run_game(num_players=3, target_score=60)
+    run_game(num_players=4, target_score=70)
     print("--- GAME 2 END ---")
