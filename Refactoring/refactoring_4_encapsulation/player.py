@@ -2,9 +2,9 @@ from random import randint
 
 
 class Player:
-    def __init__(self, num):
-        self._score = 0
-        self.num = num
+    def __init__(self, player_num, score=0):
+        self.num = player_num
+        self._score = score
 
     def take_turn(self):
         roll = randint(1, 6)
@@ -19,4 +19,4 @@ class Player:
         return f"Player {self.num}"
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.num}, score={self._score})"
+        return f"Player({self.num}, score={self._score})"

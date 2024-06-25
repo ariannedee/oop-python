@@ -2,43 +2,54 @@ from player import Player
 
 
 class Game:
-    counter = 0
+    _counter = 0
 
     def __init__(self, num_players=2, target_score=100):
+        Game._counter += 1
+        self.num = Game._counter
         self.target_score = target_score
-        self.players = [Player(i + 1) for i in range(num_players)]
-        Game.counter += 1
-        self.num = Game.counter
+        self.players = []
+        for i in range(num_players):
+            self.players.append(Player(i + 1))
 
-    def __str__(self):
-        return f"Game {self.num}"
+    def run(self):
+        self._game_start()
+        self._game_play()
+        self._game_end()
 
-    def start(self):
+    def _game_start(self):
         print(f"--- {self} START ---".upper())
-        self._run()
-        print(f"--- {self} END ---".upper())
 
-    def _run(self):
+    def _game_play(self):
         while True:
             for player in self.players:
                 player.take_turn()
 
-            if self.is_over():
+            if self.game_over():
                 print(f"{self.winner} wins!")
                 return
 
-    def is_over(self):
+    def _game_end(self):
+        print(f"--- {self} END ---".upper())
+
+    def game_over(self):
         for player in self.players:
-            if player.score >= self.target_score:
+            if player._score >= self.target_score:
                 return True
         return False
 
     @property
     def winner(self):
-        win_player = None
-        max_score = -1
+        winner = None
+        high_score = 0
         for player in self.players:
-            if player.score > max_score:
-                win_player = player
-                max_score = player.score
-        return win_player
+            if player._score > high_score:
+                winner = player
+                high_score = player._score
+        return winner
+
+    def __str__(self):
+        return f"Game {self.num}"
+
+    def __repr__(self):
+        return f"Game(num_players={len(self.players)}, target_score={self.target_score})"
