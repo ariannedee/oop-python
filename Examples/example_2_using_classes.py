@@ -1,4 +1,4 @@
-from Examples.example_5_methods import Bike, Condition
+from example_5_methods import Bike, Condition
 
 my_bike = Bike('Univega Alpina, orange',
                condition=Condition.OKAY,
