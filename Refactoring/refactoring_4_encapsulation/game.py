@@ -2,25 +2,26 @@ from player import Player
 
 
 class Game:
-    _counter = 0
+    counter = 0
 
     def __init__(self, num_players=2, target_score=100):
-        Game._counter += 1
-        self.num = Game._counter
         self.target_score = target_score
-        self.players = []
-        for i in range(num_players):
-            self.players.append(Player(i + 1))
+        self.players = [Player(i + 1) for i in range(num_players)]
+        Game.counter += 1
+        self.num = Game.counter
 
     def run(self):
-        self._game_start()
-        self._game_play()
-        self._game_end()
+        self._start()
+        self._play()
+        self._end()
 
-    def _game_start(self):
-        print(f"--- {self} START ---".upper())
+    def _start(self):
+        print(f'--- {self} START ---')
 
-    def _game_play(self):
+    def _end(self):
+        print(f'--- {self} END ---')
+
+    def _play(self):
         while True:
             for player in self.players:
                 player.take_turn()
@@ -29,27 +30,22 @@ class Game:
                 print(f"{self.winner} wins!")
                 return
 
-    def _game_end(self):
-        print(f"--- {self} END ---".upper())
-
     def game_over(self):
         for player in self.players:
-            if player._score >= self.target_score:
+            if player.score >= self.target_score:
                 return True
         return False
 
     @property
     def winner(self):
-        winner = None
-        high_score = 0
+        hi_score_player = None
+        hi_score = 0
+
         for player in self.players:
-            if player._score > high_score:
-                winner = player
-                high_score = player._score
-        return winner
+            if player.score > hi_score:
+                hi_score_player = player
+                hi_score = player.score
+        return hi_score_player
 
     def __str__(self):
-        return f"Game {self.num}"
-
-    def __repr__(self):
-        return f"Game(num_players={len(self.players)}, target_score={self.target_score})"
+        return f'Game {self.num}'
