@@ -14,6 +14,8 @@ class MethodNotAllowed(Exception):
 
 
 class Bike(object):
+    counter = 0
+
     def __init__(self, description, condition, sale_price, cost=0):
         self.description = description
         self.condition = condition
@@ -21,6 +23,8 @@ class Bike(object):
         self.cost = cost
 
         self.sold = False
+        type(self).counter += 1
+        self.id = self.counter
 
     def update_sale_price(self, sale_price):
         if self.sold:
@@ -63,18 +67,21 @@ class Bike(object):
     @classmethod
     def get_test_object(cls):
         return cls(
-            description=f"A test {cls.__name__}",
+            description=f"{cls.__name__} {cls.counter + 1}",
             condition=random.choice(list(Condition)),
             sale_price=random.randrange(100, 500, 25),
             cost=random.randrange(0, 100, 10)
         )
 
     def __str__(self):
-        return f"{type(self).__name__}: selling for ${self.sale_price}, cost: ${self.cost} ({self.condition.name.lower()})"
+        return f"{self.description}: selling for ${self.sale_price}, cost: ${self.cost} ({self.condition.name.lower()})"
+
+    def __repr__(self):
+        return f"{type(self).__name__}({self.description!r}, {self.condition}, {self.sale_price}, {self.cost})"
 
 
 class Trike(Bike):
-    pass
+    counter = 0
 
 
 if __name__ == '__main__':
@@ -85,6 +92,8 @@ if __name__ == '__main__':
     print(bike.profit)  # Call property
 
     # Call methods on subclass
-    print(Trike.get_test_bike())    # staticmethod
-    print(Trike.get_test_object())  # classmethod
+    print(Trike.get_test_bike())     # staticmethod
+    trike = Trike.get_test_object()  # classmethod
+    print(trike)
 
+    print([bike, trike])  # Call repr
