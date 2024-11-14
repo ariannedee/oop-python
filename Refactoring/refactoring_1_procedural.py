@@ -13,7 +13,6 @@ while True:
     player_1_roll = randint(1, 6)
     player_1_score += player_1_roll
     print(f"Player 1: {player_1_score} (rolled a {player_1_roll})")
-
     if player_1_score >= 100:
         print("Player 1 wins!")
         break
@@ -21,7 +20,9 @@ while True:
     player_2_roll = randint(1, 6)
     player_2_score += player_2_roll
     print(f"Player 2: {player_2_score} (rolled a {player_2_roll})")
-
     if player_2_score >= 100:
         print("Player 2 wins!")
         break
+
+if __name__ == '__main__':
+    pass

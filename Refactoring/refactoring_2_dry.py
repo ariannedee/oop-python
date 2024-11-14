@@ -17,16 +17,15 @@ def play_game(num_players=2, target_score=100):
             score += roll
             scores[i] = score
             print(f"Player {player_num}: {score} (rolled a {roll})")
-
             if score >= target_score:
                 print(f"Player {player_num} wins!")
                 return
 
 
 if __name__ == '__main__':
-    print("--- GAME 1 START ---")
-    play_game(num_players=4, target_score=50)
-    print("--- GAME 1 END ---")
-    print("--- GAME 2 START ---")
-    play_game(num_players=3, target_score=30)
-    print("--- GAME 2 END ---")
+    print("---- GAME 1 start ----")
+    play_game(num_players=3, target_score=50)
+    print("---- GAME 1 end ----")
+    print("---- GAME 2 start ----")
+    play_game(num_players=4, target_score=40)
+    print("---- GAME 2 end ----")
