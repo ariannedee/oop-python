@@ -2,9 +2,9 @@ from random import randint
 
 
 class Player:
-    def __init__(self, player_num):
-        self.num = player_num
-        self._score = 0
+    def __init__(self, num, score=0):
+        self.num = num
+        self._score = score
 
     @property
     def score(self):
@@ -19,8 +19,14 @@ class Player:
     def _roll():
         return randint(1, 6)
 
+    def has_won(self, target_score):
+        return self.score >= target_score
+
     def __str__(self):
         return f"Player {self.num}"
+
+    def __repr__(self):
+        return f"Player({self.num}, score={self.score})"
 
 
 class LuckyPlayer(Player):
@@ -29,8 +35,7 @@ class LuckyPlayer(Player):
         return randint(3, 6)
 
     def __str__(self):
-        base_str = super(Player, self).__str__()
-        return f"${base_str}$"
+        return super().__str__() + '*'
 
 
 def get_player(num):
