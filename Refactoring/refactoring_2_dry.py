@@ -8,7 +8,7 @@ from random import randint
 
 
 def play_game(num_players=2, target_score=100):
-    scores = [0 for _ in range(num_players)]
+    scores = [0] * num_players
 
     while True:
         for i, score in enumerate(scores):
@@ -18,14 +18,14 @@ def play_game(num_players=2, target_score=100):
             scores[i] = score
             print(f"Player {player_num}: {score} (rolled a {roll})")
             if score >= target_score:
-                print(f"Player {player_num} wins!")
+                print(f'Player {player_num} wins!')
                 return
 
 
 if __name__ == '__main__':
-    print("---- GAME 1 start ----")
-    play_game(num_players=3, target_score=50)
-    print("---- GAME 1 end ----")
-    print("---- GAME 2 start ----")
-    play_game(num_players=4, target_score=40)
-    print("---- GAME 2 end ----")
+    print("--- START GAME 1 ---")
+    play_game(3, 50)
+    print("--- END GAME 1 ---")
+    print("--- START GAME 2 ---")
+    play_game(4, 60)
+    print("--- END GAME 2 ---")
