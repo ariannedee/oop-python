@@ -8,18 +8,24 @@ class Game:
         self.players = [Player(i + 1) for i in range(num_players)]
         self.target_score = target_score
         Game.counter += 1
-        self.id = self.counter
+        self.num = Game.counter
 
-    def play_game(self):
+    def run(self):
+        self._start_display()
+        self._take_turns()
+        self._end_display()
+
+    def _take_turns(self):
         while True:
             for player in self.players:
                 player.take_turn()
 
-            if self.game_over():
-                print(f"{self.winner} wins!")
+            if self.is_over():
+                winner = self.winner
+                print(f'{winner} wins!')
                 return
 
-    def game_over(self):
+    def is_over(self):
         for player in self.players:
             if player.score >= self.target_score:
                 return True
@@ -27,20 +33,19 @@ class Game:
 
     @property
     def winner(self):
+        max_score = 0
         cur_winner = None
-        high_score = 0
-
         for player in self.players:
-            if player.score > high_score:
+            if player.score > max_score:
                 cur_winner = player
-                high_score = player.score
-
+                max_score = player.score
         return cur_winner
 
-    def run(self):
-        print(f"---- {str(self).upper()} start ----")
-        self.play_game()
-        print(f"---- {str(self).upper()} end ----")
+    def _start_display(self):
+        print(f"--- START {self} ---".upper())
+
+    def _end_display(self):
+        print(f"--- END {self} ---".upper())
 
     def __str__(self):
-        return f"Game {self.id}"
+        return f'Game {self.num}'
