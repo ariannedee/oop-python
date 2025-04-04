@@ -27,23 +27,23 @@ class Player:
         return f"Player({self.num}, score={self.score})"
 
 
-def play_game(num_players=2, target_score=100):
-    players = [Player(i+1) for i in range(num_players)]
-
+def run_game(num_players=2, target_score=100):
+    players = []
+    for i in range(num_players):
+        players.append(Player(i + 1))
     while True:
         for player in players:
             player.take_turn()
 
             if player.has_won(target_score):
-                print(f'{player} wins!')
-                print(players)
+                print(f"{player} wins!")
                 return
 
 
 if __name__ == '__main__':
-    print("--- START GAME 1 ---")
-    play_game(3, 50)
-    print("--- END GAME 1 ---")
-    print("--- START GAME 2 ---")
-    play_game(4, 60)
-    print("--- END GAME 2 ---")
+    print("----- GAME 1 START -----")
+    run_game(num_players=3, target_score=30)
+    print("----- GAME 1 END -----")
+    print("----- GAME 2 START -----")
+    run_game(num_players=4, target_score=50)
+    print("----- GAME 2 END -----")
