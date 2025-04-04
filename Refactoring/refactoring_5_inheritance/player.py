@@ -10,17 +10,14 @@ class Player:
     def score(self):
         return self._score
 
-    def take_turn(self):
-        roll = self._roll()
-        self._score += roll
-        print(f"{self}: {self.score} (rolled a {roll})")
-
     @staticmethod
     def _roll():
         return randint(1, 6)
 
-    def has_won(self, target_score):
-        return self.score >= target_score
+    def take_turn(self):
+        roll = self._roll()
+        self._score += roll
+        print(f"{self}: {self.score} (rolled a {roll})")
 
     def __str__(self):
         return f"Player {self.num}"
@@ -35,10 +32,16 @@ class LuckyPlayer(Player):
         return randint(3, 6)
 
     def __str__(self):
-        return super().__str__() + '*'
+        string = super().__str__()
+        return string + "*"
 
 
 def get_player(num):
     if num == 2:
         return LuckyPlayer(num)
     return Player(num)
+
+
+if __name__ == '__main__':
+    lp = LuckyPlayer(10)
+    print(lp)
