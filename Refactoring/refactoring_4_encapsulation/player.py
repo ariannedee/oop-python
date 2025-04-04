@@ -4,11 +4,15 @@ from random import randint
 class Player:
     def __init__(self, num, score=0):
         self.num = num
-        self.score = score
+        self._score = score
+
+    @property
+    def score(self):
+        return self._score
 
     def take_turn(self):
         roll = randint(1, 6)
-        self.score += roll
+        self._score += roll
         print(f"{self}: {self.score} (rolled a {roll})")
 
     def __str__(self):
