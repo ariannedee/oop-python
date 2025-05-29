@@ -28,12 +28,8 @@ class Bike(object):
 
     @sale_price.setter
     def sale_price(self, sale_price):
-        if self.sold:
-            raise MethodNotAllowed('Bike has already been sold')
-        if sale_price < 0:
-            raise ValueError("Sale price must be non-negative")
-        else:
-            self._sale_price = sale_price
+        ...  # Add some validation
+        self._sale_price = sale_price
 
     def sell(self):
         """
@@ -66,8 +62,7 @@ class Bike(object):
 if __name__ == '__main__':
     bike = Bike.get_test_object()  # Class method
 
-    print(bike.sale_price)
-
+    print(bike.sale_price)  # Calls getter/property
     bike.sale_price = 1000  # Calls setter
     print(bike.sale_price)  # 1000
 
