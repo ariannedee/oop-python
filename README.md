@@ -15,45 +15,33 @@ Go to https://www.python.org/downloads/
 
 Click the yellow button at the top to download the latest version of Python.
 
-#### On Mac or Linux
 Follow the prompts and install using the default settings.
 
-#### On Windows
-The default settings don't add Python to your PATH 
-so your computer doesn't know where to look for it when Python runs 
-(for some inexplicable reason).
-
-##### If you're just installing Python now
-Follow the instructions here: [Windows Python installer instructions](docs/WININSTALL.md)
-
-##### If you've already installed Python with the default settings
-Follow the instructions here: [Add Python to PATH variable in Windows](docs/WINSETPATH.md)
-
 ### 2. Make sure that Python is properly installed
-1. Open the *Command Prompt* application in Windows
+1. Open the *PowerShell* application in Windows
 or *Terminal* on Mac or Linux
 
-1. Type `python --version` and press enter
+1. Type `python --version` and press enter 
+2. Type `python3 --version` and press enter
+3. Type `py --version` and press enter
 
-1. Type `python3 --version` and press enter
-
-1. One or both of those commands should print 
+At least one of those commands should print 
 a Python version of 3.8 or higher 
 (whichever version you just downloaded).
- If it doesn't, you have to follow instructions to
- [add Python to your PATH variable](docs/WINSETPATH.md).
 
 **Note:** 
-You can now type just the `python` or `python3` command
-in *Command Prompt* or *Terminal* 
-to run the Python interpreter.
+You can now type just the `python`, `python3` or `py` command
+in *PowerShell* or *Terminal* to run the Python console.
 You can also run a *.py* file by running 
-`python filename.py`
+`<python cmd> filename.py`
 
-### 3. Download PyCharm (Community Edition)
+### 3. Download PyCharm
 Download here: https://www.jetbrains.com/pycharm/download/
 
 Install, open, and use the default settings.
+
+*Note*: It comes with a 30-day free trial of professional features. 
+These are not needed for the course and the free features (or the Community edition) will suffice.
 
 ### 4. Download the course files
 If you're viewing this on GitHub already, stay on this page.
@@ -75,33 +63,20 @@ for a resource package that has PyCharm shortcuts, links, and a Python 2 to 3 co
 ## FAQs
 ### Can I use Python 2?
 
-Yes. There are not many differences for this class.
+No, nobody should be using Python 2 anymore.
 
 ### Can I use a different code editor besides PyCharm?
 
 Jupyter notebooks are not ideal since we'll be working from multiple folders throughout the class.
 
-Other IDEs like VS Code, Atom, and Spyder will work, but they are only recommended if you are already know it 
+Other IDEs like VS Code, Atom, and Spyder are fine, but they are only recommended if you are already know it 
 and are comfortable navigating to different files and running commands in the command line. 
-If it has syntax highlighting for Python, that is ideal.
 
 ### PyCharm can't find Python 3
 
-On a Mac:
-- Go to **PyCharm** > **Preferences**
-
-On a PC:
-- Go to **File** > **Settings**
-
-Once in Settings:
-1. Go to **Project: oop-python** > **Project Interpreter**
-1. Look for your Python version in the Project Interpreter dropdown
-1. If it's not there, click **gear icon** > **Add...**
-1. In the new window, select **System Interpreter** on the left, and then look for the Python version in the dropdown
-1. If it's not there, click the **...** button and navigate to your Python location
+1. On the bottom right of PyCharm, click on the Python Interpreter and select one from the list
+1. If it's not there, click **Add New Interpreter** > **Add Local Interpreter...**
+1. Try to select an existing Python system interpreter and then look for the Python version in the dropdown (exact instructions differ depending on PyCharm version)
+1. If it's not there, click the **...** or **folder icon** button and navigate to your Python location
    - To find where Python is located, [look in these directories](docs/PATH_LOCATIONS.md)
    - You may have to search the internet for where Python gets installed by default on your operating system
-
-### Do you offer private Python help?
-Yes, email **arianne.dee.studios at gmail.com** if you have any questions
-or would like to set up some remote training.
