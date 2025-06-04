@@ -8,26 +8,24 @@ from random import randint
 
 
 def run_game(num_players=2, target_score=100):
-    scores = []
-    for i in range(num_players):
-        scores.append(0)
+    scores = [0] * num_players
 
     while True:
         for i, score in enumerate(scores):
-            player_num = i + 1
             roll = randint(1, 6)
             score += roll
             scores[i] = score
-            print(f"Player {player_num}: {score} (rolled a {roll})")
+            print(f"Player {i + 1}: {score} (rolled a {roll})")
             if score >= target_score:
-                print(f"Player {player_num} wins!")
+                print(f"Player {i + 1} wins!")
                 return
 
 
 if __name__ == '__main__':
-    print("----- GAME 1 START -----")
-    run_game(num_players=3, target_score=30)
-    print("----- GAME 1 END -----")
-    print("----- GAME 2 START -----")
-    run_game(num_players=4, target_score=50)
-    print("----- GAME 2 END -----")
+    print("---- GAME 1 START ----")
+    run_game(num_players=3, target_score=50)
+    print("---- GAME 1 END ----")
+    print()
+    print("---- GAME 2 START ----")
+    run_game(num_players=4, target_score=60)
+    print("---- GAME 2 END ----")
