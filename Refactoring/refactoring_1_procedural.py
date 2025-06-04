@@ -7,7 +7,7 @@ The first person to space 100 wins.
 from random import randint
 
 
-def main():
+def run_game():
     player_1_score = 0
     player_2_score = 0
 
@@ -28,4 +28,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    run_game()
