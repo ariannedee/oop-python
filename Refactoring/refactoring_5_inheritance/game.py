@@ -1,24 +1,27 @@
-from player import get_player
+from player import get_player, Player
 
 
 class Game:
     counter = 0
 
     def __init__(self, num_players=2, target_score=100):
-        Game.counter += 1
-        self.players = [get_player(i + 1) for i in range(num_players)]
         self.target_score = target_score
+        Game.counter += 1
         self.num = Game.counter
 
-    def run(self):
-        print(f"----- {self} start -----".upper())
+        self.players: list[Player] = [get_player(i + 1) for i in range(num_players)]
 
+    def run(self):
+        print(f"---- {self} START ----".upper())
+        self._take_turns()
+        print(f"---- {self} END ----".upper())
+
+    def _take_turns(self):
         while True:
             for player in self.players:
                 player.take_turn()
             if self.game_over():
-                print(f"{self.winner()} wins!")
-                print(f"----- {self} end -----".upper())
+                print(f"{self.winner} wins!")
                 return
 
     def game_over(self):
@@ -27,14 +30,19 @@ class Game:
                 return True
         return False
 
+    @property
     def winner(self):
+        winner = None
         high_score = 0
-        cur_winner = None
         for player in self.players:
-            if player.score > high_score:
+            if player.score >= high_score:
                 high_score = player.score
-                cur_winner = player
-        return cur_winner
+                winner = player
+        return winner
 
     def __str__(self):
         return f"Game {self.num}"
+
+
+if __name__ == '__main__':
+    game = Game()

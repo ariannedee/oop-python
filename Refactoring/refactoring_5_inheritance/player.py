@@ -10,20 +10,26 @@ class Player:
     def score(self):
         return self._score
 
-    @staticmethod
-    def _roll():
-        return randint(1, 6)
+    @score.setter
+    def score(self, value):
+        if value < 0:
+            raise ValueError("Score cannot be negative")
+        self._score = value
 
     def take_turn(self):
         roll = self._roll()
         self._score += roll
         print(f"{self}: {self.score} (rolled a {roll})")
 
+    @staticmethod
+    def _roll():
+        return randint(1, 6)
+
     def __str__(self):
         return f"Player {self.num}"
 
     def __repr__(self):
-        return f"Player({self.num}, score={self.score})"
+        return f"Player({self.num}, {self.score})"
 
 
 class LuckyPlayer(Player):
@@ -32,16 +38,11 @@ class LuckyPlayer(Player):
         return randint(3, 6)
 
     def __str__(self):
-        string = super().__str__()
-        return string + "*"
+        return super().__str__() + "*"
+
 
 
 def get_player(num):
     if num == 2:
         return LuckyPlayer(num)
     return Player(num)
-
-
-if __name__ == '__main__':
-    lp = LuckyPlayer(10)
-    print(lp)
