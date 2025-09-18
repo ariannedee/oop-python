@@ -27,8 +27,10 @@ class Player:
 
 
 class LuckyPlayer(Player):
-    def __init__(self, num, minimum_roll=3):
-        super().__init__(num)
+    def __init__(self, minimum_roll=3, *args, **kwargs):
+        print(args)
+        print(kwargs)
+        super().__init__(*args, **kwargs)
         self.min_roll = minimum_roll
 
     def _roll(self):
@@ -41,6 +43,6 @@ class LuckyPlayer(Player):
 
 def get_player(num):
     if num == 2:
-        return LuckyPlayer(num, 2)
+        return LuckyPlayer(2, num, 20)
     else:
         return Player(num)
