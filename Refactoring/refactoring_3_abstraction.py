@@ -2,7 +2,7 @@
 Simulate a simple board game.
 There are 2 players.
 Each player takes turn rolling a die and moving that number of spaces.
-The first person to space 100 wins.
+The first person to space 50 wins.
 """
 from random import randint
 
@@ -23,13 +23,11 @@ class Player:
         return f"Player {self.num}"
 
     def __repr__(self):
-        return f"Player({self.num}, {self.score})"
+        return f"Player({self.num}, score={self.score})"
 
 
-def run_game(num_players=2, target_score=100):
-    players: list[Player] = []
-    for i in range(num_players):
-        players.append(Player(i + 1))
+def play_game(num_players=2, target_score=50):
+    players = [Player(i + 1) for i in range(num_players)]
 
     while True:
         for player in players:
@@ -39,10 +37,9 @@ def run_game(num_players=2, target_score=100):
                 return
 
 if __name__ == '__main__':
-    print("---- GAME 1 START ----")
-    run_game(num_players=3, target_score=50)
-    print("---- GAME 1 END ----")
-    print()
-    print("---- GAME 2 START ----")
-    run_game(num_players=4, target_score=60)
-    print("---- GAME 2 END ----")
+    print("------ GAME 1 START ------")
+    play_game(3, 40)
+    print("------ GAME 1 END ------")
+    print("------ GAME 2 START ------")
+    play_game(4, 30)
+    print("------ GAME 2 END ------")
